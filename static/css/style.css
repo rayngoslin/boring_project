@@ -1,0 +1,639 @@
+/* Tactical dark theme */
+/* Main: #1a1a1a | Text: #e0e0e0 | Accent: #ffffff */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    min-height: 100vh;
+}
+
+/* ── Nav ── */
+nav {
+    background-color: #111111;
+    padding: 0.875rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav .brand {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    transition: color 0.15s, background 0.15s;
+}
+
+nav a:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.07);
+    text-decoration: none;
+}
+
+.sep {
+    color: rgba(255, 255, 255, 0.15);
+    user-select: none;
+}
+
+.nav-logout-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, background 0.15s;
+}
+
+.nav-logout-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Flash messages ── */
+.messages-bar {
+    background: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.6rem 2rem;
+}
+
+.message {
+    font-size: 0.82rem;
+    padding: 0.4rem 0;
+    color: #e0e0e0;
+}
+
+.message.error   { color: #ff6b6b; }
+.message.success { color: #6bffb8; }
+.message.warning { color: #ffd06b; }
+
+/* ── Page container ── */
+.container {
+    max-width: 740px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ── Headings ── */
+h1 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.38);
+    margin: 2rem 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 0.85rem;
+    color: #aaaaaa;
+}
+
+/* ── Links ── */
+a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.back-link::before {
+    content: '← ';
+}
+
+.back-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+
+/* ── Quiz lists ── */
+.quiz-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #202020;
+}
+
+.quiz-list li {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.quiz-list li:last-child {
+    border-bottom: none;
+}
+
+.quiz-list li a {
+    color: #e0e0e0;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.quiz-list li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.quiz-list .by {
+    color: rgba(255, 255, 255, 0.28);
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    margin-left: auto;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.5rem 1.4rem;
+    font-size: 0.78rem;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-danger {
+    border-color: rgba(255, 80, 80, 0.5);
+    color: #ff6b6b;
+}
+
+.btn-danger:hover {
+    background-color: rgba(255, 80, 80, 0.1);
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.btn-icon {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.45rem;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-icon:hover {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+button[type="submit"],
+input[type="submit"] {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border: none;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.78rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.15s;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: #dddddd;
+}
+
+/* ── Forms ── */
+form p {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: #242424;
+    color: #e0e0e0;
+    font-size: 0.93rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: #ffffff;
+    margin-right: 0.45rem;
+    cursor: pointer;
+}
+
+/* ── Search bar ── */
+.search-bar {
+    margin-bottom: 1.5rem;
+}
+
+.search-bar form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+}
+
+.search-bar .btn {
+    flex-shrink: 0;
+}
+
+/* ── Join bar ── */
+.join-bar {
+    margin-bottom: 2rem;
+}
+
+.join-bar form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.join-bar input[type="text"] {
+    flex: 1;
+    max-width: 200px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ── Auth card ── */
+.auth-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: #202020;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 2rem 2.25rem 1.75rem;
+}
+
+.auth-card h1 {
+    margin-bottom: 1.5rem;
+}
+
+.auth-footer {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.auth-footer a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-footer a:hover {
+    color: #ffffff;
+}
+
+/* ── Quiz meta ── */
+.quiz-meta {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.invite-code {
+    background: #242424;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.15rem 0.5rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.invite-info {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* ── Quiz questions ── */
+.question-block {
+    background: #202020;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.65rem;
+}
+
+.question-block strong {
+    display: block;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+.answer-label {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0;
+    cursor: pointer;
+    font-weight: normal;
+    color: #999999;
+    font-size: 0.9rem;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.answer-label:hover {
+    color: #ffffff;
+}
+
+/* ── Timer ── */
+#quiz-header {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+
+#timer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+#timer-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+#timer-fill {
+    height: 100%;
+    background: #ffffff;
+    transition: width 1s linear, background 0.3s;
+    width: 100%;
+}
+
+#timer-count {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    min-width: 2.5rem;
+    text-align: right;
+}
+
+#quiz-nav {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* ── Question media ── */
+.question-media {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    display: block;
+    margin: 0.75rem 0 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin: 0.75rem 0 1rem;
+}
+
+.video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* ── Result score ── */
+.result-score {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 1.25rem 0;
+    letter-spacing: 4px;
+}
+
+/* ── Leaderboard ── */
+.leaderboard {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    counter-reset: none;
+}
+
+.leaderboard li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: #202020;
+    font-size: 0.88rem;
+}
+
+.leaderboard li:first-child {
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.leaderboard li.lb-mine {
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid rgba(255,255,255,0.4);
+}
+
+.lb-rank {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.72rem;
+    width: 1.5rem;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.lb-user {
+    flex: 1;
+    color: #e0e0e0;
+}
+
+.lb-score {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Profile ── */
+.profile-section {
+    margin-bottom: 1.5rem;
+}
+
+.profile-section p {
+    margin-bottom: 0.4rem;
+    color: #888;
+}
+
+/* ── Quiz detail ── */
+.quiz-description {
+    color: #999999;
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+}
+
+.action-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ── Edit quiz question list ── */
+.q-label {
+    flex: 1;
+    font-size: 0.88rem;
+    color: #ccc;
+}
+
+.q-meta {
+    color: rgba(255,255,255,0.25);
+    font-style: normal;
+    font-size: 0.75rem;
+    margin-left: 0.4rem;
+}
+
+/* ── Add question form ── */
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.answer-form-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.answer-form-row input[type="text"] {
+    flex: 1;
+}
+
+.inline-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+/* ── Utility ── */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 1.5rem; }

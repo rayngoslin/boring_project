@@ -1,0 +1,41 @@
+{% extends 'quiz/base.html' %}
+{% block title %}{{ quiz.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ quiz.title }}</h1>
+<p class="quiz-description">{{ quiz.description }}</p>
+
+<div class="quiz-meta">
+    <span>By {{ quiz.created_by.username }}</span>
+    <span class="sep">·</span>
+    <span>{{ questions.count }} question{{ questions.count|pluralize }}</span>
+    <span class="sep">·</span>
+    <span>Code: <code class="invite-code">{{ quiz.invite_code }}</code></span>
+</div>
+
+<div class="action-row mt-1">
+    <a href="{% url 'take_quiz' quiz.id %}" class="btn">Take Quiz</a>
+    {% if can_edit %}
+        <a href="{% url 'edit_quiz' quiz.id %}" class="btn">Edit</a>
+        <form method="post" action="{% url 'delete_quiz' quiz.id %}" style="display:inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"
+                    onclick="return confirm('Delete quiz \'{{ quiz.title }}\'? This cannot be undone.')">Delete</button>
+        </form>
+    {% endif %}
+    <a href="{% url 'quiz_list' %}" class="back-link">All Quizzes</a>
+</div>
+
+{% if top_scores %}
+<h2>Leaderboard</h2>
+<ol class="leaderboard">
+    {% for p in top_scores %}
+    <li class="{% if user.is_authenticated and p.user == user %}lb-mine{% endif %}">
+        <span class="lb-rank">{{ forloop.counter }}</span>
+        <span class="lb-user">{{ p.user.username }}</span>
+        <span class="lb-score">{{ p.score }}{% if p.total %}/{{ p.total }}{% endif %}</span>
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'quiz/base.html' %}
+{% block title %}Profile — {{ user.username }}{% endblock %}
+
+{% block content %}
+<h1>{{ user.username }}</h1>
+
+<div class="profile-section">
+    {% if user.first_name or user.last_name %}
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
+    {% endif %}
+    {% if user.email %}<p>{{ user.email }}</p>{% endif %}
+    <a href="{% url 'profile_edit' %}" class="btn mt-1">Edit Profile</a>
+</div>
+
+<h2>Quiz History</h2>
+{% if participations %}
+<ul class="quiz-list">
+    {% for p in participations %}
+    <li>
+        <a href="{% url 'quiz_detail' p.quiz.id %}">{{ p.quiz.title }}</a>
+        <span class="by">
+            {{ p.score }}{% if p.total %}/{{ p.total }}{% endif %}
+            &middot; {{ p.completed_at|date:"M d, Y" }}
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No quizzes taken yet. <a href="{% url 'quiz_list' %}">Browse quizzes</a></p>
+{% endif %}
+{% endblock %}

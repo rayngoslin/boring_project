@@ -1,0 +1,32 @@
+{% extends 'quiz/base.html' %}
+{% block title %}Result — {{ quiz.title }}{% endblock %}
+
+{% block content %}
+<h1>Result: {{ quiz.title }}</h1>
+
+{% if participation %}
+<p class="result-score">
+    {{ participation.score }}{% if participation.total %} / {{ participation.total }}{% endif %}
+</p>
+{% else %}
+<p class="result-score">Done!</p>
+{% endif %}
+
+{% if top_scores %}
+<h2>Leaderboard</h2>
+<ol class="leaderboard">
+    {% for p in top_scores %}
+    <li class="{% if user.is_authenticated and p.user == user %}lb-mine{% endif %}">
+        <span class="lb-rank">{{ forloop.counter }}</span>
+        <span class="lb-user">{{ p.user.username }}</span>
+        <span class="lb-score">{{ p.score }}{% if p.total %}/{{ p.total }}{% endif %}</span>
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}
+
+<div class="action-row mt-2">
+    <a href="{% url 'quiz_detail' quiz.id %}" class="btn">Back to Quiz</a>
+    <a href="{% url 'quiz_list' %}" class="back-link">All Quizzes</a>
+</div>
+{% endblock %}

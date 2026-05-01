@@ -1,0 +1,51 @@
+{% extends 'quiz/base.html' %}
+{% block title %}Online Quiz — Home{% endblock %}
+
+{% block content %}
+<h1>Online Quiz</h1>
+
+<div class="search-bar">
+    <form method="get" action="{% url 'home' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search quizzes…">
+        <button type="submit" class="btn">Search</button>
+    </form>
+</div>
+
+<div class="join-bar">
+    <form method="post" action="{% url 'join_quiz' %}">
+        {% csrf_token %}
+        {{ join_form.invite_code }}
+        <button type="submit" class="btn">Join by Code</button>
+    </form>
+</div>
+
+<h2>Popular Quizzes</h2>
+<ul class="quiz-list">
+    {% for quiz in popular_quizzes %}
+        <li>
+            <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a>
+            <span class="by">{{ quiz.num_participations }} play{{ quiz.num_participations|pluralize }}</span>
+        </li>
+    {% empty %}
+        <li>No quizzes yet.</li>
+    {% endfor %}
+</ul>
+
+<h2>New Quizzes</h2>
+<ul class="quiz-list">
+    {% for quiz in new_quizzes %}
+        <li>
+            <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a>
+            <span class="by">by {{ quiz.created_by.username }}</span>
+        </li>
+    {% empty %}
+        <li>No quizzes yet.</li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+<div class="mt-2">
+    <a href="{% url 'create_quiz' %}" class="btn">+ Create New Quiz</a>
+</div>
+{% endif %}
+{% endblock %}

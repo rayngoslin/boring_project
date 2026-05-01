@@ -1,0 +1,39 @@
+{% extends 'quiz/base.html' %}
+{% block title %}Add Question{% endblock %}
+
+{% block content %}
+<h1>Add Question</h1>
+<p class="quiz-description">Quiz: {{ quiz.title }}</p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-section">
+        <h2>Question Details</h2>
+        {{ q_form.as_p }}
+    </div>
+
+    <div class="form-section">
+        <h2>Answer Options</h2>
+        <p style="color:#888;font-size:.8rem">Mark exactly one answer as correct.</p>
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <div class="answer-form-row">
+            {{ form.text }}
+            <label class="inline-check">
+                {{ form.is_correct }} Correct
+            </label>
+            {% if form.instance.pk %}
+            <label class="inline-check">
+                {{ form.DELETE }} Delete
+            </label>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Add Question</button>
+</form>
+
+<a href="{% url 'edit_quiz' quiz.id %}" class="back-link">Back to Quiz</a>
+{% endblock %}

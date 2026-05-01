@@ -1,0 +1,32 @@
+{% extends 'quiz/base.html' %}
+{% block title %}All Quizzes{% endblock %}
+
+{% block content %}
+<h1>All Quizzes</h1>
+
+<div class="search-bar">
+    <form method="get" action="{% url 'quiz_list' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search quizzes…">
+        <button type="submit" class="btn">Search</button>
+    </form>
+</div>
+
+{% if user.is_authenticated %}
+<div class="mt-1">
+    <a href="{% url 'create_quiz' %}" class="btn">+ New Quiz</a>
+</div>
+{% endif %}
+
+<ul class="quiz-list mt-1">
+    {% for quiz in quizzes %}
+        <li>
+            <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a>
+            <span class="by">by {{ quiz.created_by.username }}</span>
+        </li>
+    {% empty %}
+        <li>No quizzes found.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="back-link">Back to Home</a>
+{% endblock %}
