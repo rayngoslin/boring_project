@@ -84,6 +84,11 @@ def quiz_detail(request, quiz_id):
     })
 
 
+def quiz_detail_by_code(request, invite_code):
+    quiz = get_object_or_404(Quiz, invite_code=invite_code.upper())
+    return quiz_detail(request, quiz.id)
+
+
 @login_required
 def take_quiz(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
@@ -132,7 +137,7 @@ def join_quiz(request):
             code = form.cleaned_data['invite_code'].strip().upper()
             quiz = Quiz.objects.filter(invite_code=code).first()
             if quiz:
-                return redirect('quiz_detail', quiz_id=quiz.id)
+                return redirect('quiz_detail_by_code', invite_code=quiz.invite_code)
             messages.error(request, f'No quiz found with code "{code}".')
     return redirect('home')
 
