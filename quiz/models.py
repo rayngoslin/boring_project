@@ -22,17 +22,14 @@ class Quiz(models.Model):
 class Question(models.Model):
     TEXT = 'text'
     IMAGE = 'image'
-    VIDEO = 'video'
     QUESTION_TYPES = [
         (TEXT, 'Text'),
         (IMAGE, 'Image'),
-        (VIDEO, 'Video'),
     ]
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questions')
     text = models.CharField(max_length=500)
     question_type = models.CharField(max_length=10, choices=QUESTION_TYPES, default=TEXT)
     image = models.ImageField(upload_to='questions/images/', blank=True, null=True)
-    video = models.URLField(blank=True, null=True)
     time_limit = models.PositiveIntegerField(default=30, help_text="Time limit in seconds")
     order = models.PositiveIntegerField(default=0)
 

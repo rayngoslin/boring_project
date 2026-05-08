@@ -16,12 +16,19 @@ class QuizForm(forms.ModelForm):
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['text', 'question_type', 'image', 'video', 'time_limit']
+        fields = ['text', 'question_type', 'image', 'time_limit']
         widgets = {
             'text': forms.TextInput(attrs={'placeholder': 'Question text'}),
             'time_limit': forms.NumberInput(attrs={'min': 5, 'max': 300}),
-            'video': forms.URLInput(attrs={'placeholder': 'YouTube embed URL (optional)'}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('image'):
+            cleaned_data['question_type'] = Question.IMAGE
+        else:
+            cleaned_data['question_type'] = Question.TEXT
+        return cleaned_data
 
 
 AnswerFormSet = inlineformset_factory(

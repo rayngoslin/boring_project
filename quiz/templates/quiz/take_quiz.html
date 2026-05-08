@@ -31,10 +31,6 @@
 
         {% if question.question_type == 'image' and question.image %}
             <img src="{{ question.image.url }}" class="question-media" alt="">
-        {% elif question.question_type == 'video' and question.video %}
-            <div class="video-wrap">
-                <iframe src="{{ question.video }}" frameborder="0" allowfullscreen></iframe>
-            </div>
         {% endif %}
 
         {% for answer in question.answers.all %}

@@ -12,6 +12,7 @@
 </div>
 
 <div class="join-bar">
+    <p class="join-hint">Have an invite code? Enter it below to jump straight to that quiz.</p>
     <form method="post" action="{% url 'join_quiz' %}">
         {% csrf_token %}
         {{ join_form.invite_code }}
